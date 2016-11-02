@@ -1,0 +1,28 @@
+body {
+	padding: 10px 20px;
+}
+section {
+	margin-top: 35px;
+}
+section:first-child {
+	margin-top: 0px;
+}
+article {
+	font-size: 15px;
+}
+pre {
+	position: relative;
+}
+pre .comment {
+	color: #75715e;
+}
+pre .comment:before {
+	content: "//";
+}
+pre .lab {
+	position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 5px;
+    color: #a1a1a1;
+}

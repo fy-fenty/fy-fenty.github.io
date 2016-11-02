@@ -1,1 +1,163 @@
-React guide
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+</head>
+<body>
+	<section>
+		<h2>开始之前</h2>	
+		<article>
+			React 是一个模块化的UI框架，本引导以一个常见的信息管理系统为例子，结合webpack一起使用。
+		</article>
+	</section>
+	<section>
+		<h2>相关技术</h2>
+		<article>
+			<ul>
+				<li>nodejs: 方便于本地环境的开发和调试，整合下面的技术。</li>
+				<li>webpack: 类似于gulp的构建工具，但是webpack本身有模块化功能，所以与React契合度比较高。</li>
+				<li>JSX: React里面的VDOM(Virtual DOM)结构语法，比较原始JS更加简洁。</li>
+				<li>es2015: javascript的最新版本，语法更简洁，引入了很多新特性，如模块、箭头函数、变量定义。<a target="_blank" href="http://es6.ruanyifeng.com/">手册</a></li>
+				<li>babel: javascript转换工具，将ES6，JSX转换为浏览器能够识别的内容。</li>
+			</ul>
+		</article>
+	</section>
+	<section>
+		<h2>第一步: 搭建nodejs</h2>
+		<article>
+			下面是node的配置，
+			<pre>
+				<span class="lab">package.json</span>
+{
+  "name": "reactjs-practice",
+  "version": "1.0.0",
+  "description": "react-demo",
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
+  },
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "dependencies": {
+    "jquery": "^2.2.3",
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.8.0",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.6.0",		<span class="comment">对ES6对转换</span>
+    "babel-preset-react": "^6.5.0",		<span class="comment">对JSX语法的转换</span>
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1"		<span class="comment">以服务的方式启动，便于开发调试</span>
+  }
+}
+			</pre>
+		</article>
+	</section>
+	<section>
+		<h2>第二步：搭建webpack</h2>
+		<article>
+			<pre>
+				<span class="lab">webpack.config.js</span>
+module.exports = {
+    entry: {
+        index: "./app"
+    },
+    output: {
+        path: "./build",
+        publicPath: "/static/",
+        filename: "[name].js"
+    },
+    resolve: {
+        extensions: ["", ".js", ".jsx"]     <span class="comment">引入本地模块时，省去后缀名</span>
+    },
+    module: {
+        loaders: [{
+            test: /\.jsx?$/,                <span class="comment">将所有的js或jsx后缀的文件交给babel处理</span>
+            loaders: [ 'babel' ],
+            exclude: /node_modules/
+        }]
+    }
+};
+			</pre>
+		</article>
+	</section>
+	<section>
+		<h2>第三部：组织基本组件</h2>
+		<article>
+			<pre>
+				<span class="lab">module/Row.jsx</span>
+import React from 'react'             <span class="comment">ES6特性，引入整个react类库</span>
+
+const Item = React.createClass({      <span class="comment">使用React模块的createClass函数创建一个组件，也可采用继承的方法（class Item extends React.Component)</span>
+    render() {
+        return (
+            &lt;div&gt;                     <span class="comment">return 的内容必须是只能有一个根节点</span>
+                这是一条记录
+            &lt;/div&gt;
+        )
+    }
+});
+
+export default Item;
+			</pre>
+			表格模块，用于显示数据列表的容器
+			<pre>
+				<span class="lab">module/Grid.jsx</span>
+import React from 'react'
+import Row from './Row';
+
+var Grid = React.createClass({
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;Row /&gt;
+                &lt;Row /&gt;
+                &lt;Row /&gt;
+                &lt;Row /&gt;
+            &lt;/div&gt;
+        )
+    }
+});
+
+export default Grid;
+			</pre>
+			程序入口文件，将Grid渲染到页面中
+			<pre>
+				<span class="lab">app.jsx</span>
+import React from 'react';
+import { render } from 'react-dom';                     <span class="comment">引入 react-dom 类库中的 render 模块</span>
+import Grid from './module/Grid';
+
+render(&lt;Grid /&gt;, document.getElementById('example'));
+			</pre>
+			页面模板
+			<pre>
+				<span class="lab">index.html</span>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8" /&gt;
+        &lt;title&gt;Hello React!&lt;/title&gt;  
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id="example"&gt;&lt;/div&gt;
+        &lt;script type="text/javascript" src="/static/index.js"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+			</pre>
+            此时运行node，访问<a target="_blank" href="http://localhost:8080/">http://localhost:8080/</a>将得到下面的结果<br>
+            <img src="images/1.png" alt=""><br>
+            接下来将数据变为动态获取
+		</article>
+	</section>
+	<link rel="stylesheet" href="css.css">
+	<link rel="stylesheet" href="../../bootstrap.min.css">
+	<script type="text/javascript" src="js.js"></script>
+</body>
+</html>

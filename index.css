@@ -1,0 +1,9 @@
+body {
+	margin: 0px;
+	background-color: #fefefe;
+}
+.title {
+	padding: 10px 20px;
+	text-align: center;
+	font-size: 36px;
+}
