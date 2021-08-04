@@ -4,9 +4,9 @@ const articleSlice = createSlice({
   name: 'article',
   initialState: {
     list: [{
-      title: 'hello',
-      author: 'me',
-      content: 'hello world.'
+      title: '标题',
+      author: '作者',
+      content: '这是文章的标题.'
     }]
   },
   reducers: {

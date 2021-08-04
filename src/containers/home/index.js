@@ -7,9 +7,9 @@ import './HomeContainer.scss';
 class HomeContainer extends Component {
   componentDidMount() {
     this.props.fetchArticle([{
-      title: 'hello1',
-      author: 'me1',
-      content: 'hello world1.'
+      title: '标题',
+      author: '作者',
+      content: '这是文章的标题。'
     }]);
   }
 

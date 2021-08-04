@@ -10,6 +10,7 @@ function App() {
   const routers = createRoutes();
   return (
     <>
+      <div class="bg"></div>
       <Navigatior></Navigatior>
       <ErrorBoundary>
         {routers}
