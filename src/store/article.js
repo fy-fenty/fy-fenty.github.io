@@ -3,11 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const articleSlice = createSlice({
   name: 'article',
   initialState: {
-    list: [{
-      title: '标题',
-      author: '作者',
-      content: '这是文章的标题.'
-    }]
+    list: [],
+    loading: false
   },
   reducers: {
     fetch: (state, { payload }) => {
