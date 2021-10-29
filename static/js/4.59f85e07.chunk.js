@@ -1,0 +1,2 @@
+(this.webpackJsonpfui=this.webpackJsonpfui||[]).push([[4],{42:function(n,t,e){},44:function(n,t,e){"use strict";e.r(t),e.d(t,"default",(function(){return i}));var u=e(0),a=e.n(u);e(42);function i(){return a.a.createElement("div",{className:"container about-wrap"},"Is me")}}}]);
+//# sourceMappingURL=4.59f85e07.chunk.js.map
